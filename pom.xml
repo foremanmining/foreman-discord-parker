@@ -40,5 +40,17 @@
 
     <modules>
         <module>parker-app</module>
+        <module>parker-mongodb</module>
+        <module>parker-utils</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>mn.foreman</groupId>
+                <artifactId>parker-utils</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
