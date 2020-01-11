@@ -1,4 +1,4 @@
-package mn.foreman.parker;
+package mn.foreman.parker.app;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
