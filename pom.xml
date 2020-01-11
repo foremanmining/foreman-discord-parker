@@ -36,10 +36,15 @@
 
     <properties>
         <java.version>13</java.version>
+
+        <commons-io.version>2.6</commons-io.version>
+        <discord-jda.version>4.1.0_96</discord-jda.version>
+        <easymock.version>4.1</easymock.version>
     </properties>
 
     <modules>
         <module>parker-app</module>
+        <module>parker-discord</module>
         <module>parker-mongodb</module>
         <module>parker-utils</module>
     </modules>
@@ -48,8 +53,36 @@
         <dependencies>
             <dependency>
                 <groupId>mn.foreman</groupId>
+                <artifactId>parker-discord</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mn.foreman</groupId>
+                <artifactId>parker-mongodb</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mn.foreman</groupId>
                 <artifactId>parker-utils</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.dv8tion</groupId>
+                <artifactId>JDA</artifactId>
+                <version>${discord-jda.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+
+            <!-- Test dependencies -->
+            <dependency>
+                <groupId>org.easymock</groupId>
+                <artifactId>easymock</artifactId>
+                <version>${easymock.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
