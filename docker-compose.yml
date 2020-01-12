@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+  parker:
+    image: delawr0190/discord-parker
+    restart: always
+    container_name: discord-parker
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN?err}
+      - FOREMAN_API_TOKEN=${FOREMAN_API_TOKEN?err}
+      - MONGODB_URI=${MONGODB_URI}
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: discord-parker-mongo
+    volumes:
+      - $HOME/data/discord-parcker/mongo-data:/data/db
+      - $HOME/data/discord-parcker/mongo-bkp:/data/bkp
+    restart: always
