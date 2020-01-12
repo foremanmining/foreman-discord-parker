@@ -42,16 +42,16 @@ This project leverages the Maven jib plugin to produce and upload a docker image
 $ mvn clean deploy
 ```
 
+The following environment variables must be defined to run the bot:
+- DISCORD_TOKEN: a discord bot token obtained from Discord
+- FOREMAN_API_TOKEN: a Foreman api token obtained from [your Foreman account](https://dashboard.foreman.mn/dashboard/profile/)
+- MONGODB_URI: the mongodb uri to a running mongodb instance that may be used by the bot
+
 ### Running the bot
 
 For ease of use, a `docker-compose.yml` file has been provided. The following containers will be deployed:
 - mongodb
 - discord-parker
-
-The following environment variables must be defined to run the bot:
-- DISCORD_TOKEN: a discord bot token obtained from Discord
-- FOREMAN_API_TOKEN: a Foreman api token obtained from [your Foreman account](https://dashboard.foreman.mn/dashboard/profile/)
-- MONGODB_URI: the mongodb uri to a running mongodb instance that may be used by the bot
 
 See below for an example of how to start this bot:
 
