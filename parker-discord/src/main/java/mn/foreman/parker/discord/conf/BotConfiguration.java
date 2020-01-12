@@ -17,8 +17,8 @@ import javax.security.auth.login.LoginException;
 public class BotConfiguration {
 
     /** The activity message. */
-    @Value("${discord.message}")
-    private String message;
+    @Value("${discord.playing}")
+    private String playing;
 
     /** The discord bot token. */
     @Value("${discord.token}")
@@ -37,10 +37,7 @@ public class BotConfiguration {
             throws LoginException, InterruptedException {
         final JDA jda =
                 new JDABuilder(this.token)
-                        .setActivity(
-                                Activity.of(
-                                        Activity.ActivityType.CUSTOM_STATUS,
-                                        this.message))
+                        .setActivity(Activity.playing(this.playing))
                         .build();
         jda.awaitReady();
         return jda;

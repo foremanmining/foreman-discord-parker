@@ -83,6 +83,9 @@ public class DiscordParker {
                         .stream()
                         .map(PoolsClient.Pool::getStratum)
                         .collect(Collectors.toList());
+
+        LOG.debug("Obtained {} pools from the Foreman API", pools.size());
+
         if (!pools.isEmpty()) {
             // Get all of the known pools from our db
             final List<String> knownPools =
@@ -95,33 +98,11 @@ public class DiscordParker {
             pools.removeAll(knownPools);
 
             if (!pools.isEmpty()) {
-                // Save the new ones and announce them as added
-                final MessageBuilder messageBuilder =
-                        new MessageBuilder()
-                                .append(BANNER);
-                pools
-                        .stream()
-                        .map(DiscordParker::toPool)
-                        .forEach(pool -> {
-                            this.poolRepository.insert(pool);
-                            messageBuilder
-                                    .append("\n* ")
-                                    .append(pool.getStratumUrl());
-                        });
-
-                // Only announce if this isn't the initial load of everything
-                if (!knownPools.isEmpty()) {
-                    final TextChannel textChannel =
-                            this.jda.getTextChannelsByName(
-                                    this.announcementChannel,
-                                    true)
-                                    .stream()
-                                    .findFirst()
-                                    .orElseThrow();
-                    textChannel.sendMessage(messageBuilder.build()).queue();
-                } else {
-                    LOG.info("Loaded {} pools", pools.size());
-                }
+                addNewPools(
+                        pools,
+                        knownPools.isEmpty());
+            } else {
+                LOG.info("No new pools have been added");
             }
         } else {
             LOG.warn("No pools returned from the Foreman API");
@@ -140,5 +121,44 @@ public class DiscordParker {
                 .stratumUrl(stratum)
                 .announced(TimeUtils.now())
                 .build();
+    }
+
+    /**
+     * Adds all of the new pools if this isn't the initial load of the database
+     * (don't announce all of the old ones).
+     *
+     * @param pools         The pools to add.
+     * @param isInitialLoad Whether or not this is the initial load.
+     */
+    private void addNewPools(
+            final List<String> pools,
+            final boolean isInitialLoad) {
+        // Save the new ones and announce them as added
+        final MessageBuilder messageBuilder =
+                new MessageBuilder()
+                        .append(BANNER);
+        pools
+                .stream()
+                .map(DiscordParker::toPool)
+                .forEach(pool -> {
+                    this.poolRepository.insert(pool);
+                    messageBuilder
+                            .append("\n* ")
+                            .append(pool.getStratumUrl());
+                });
+
+        // Only announce if this isn't the initial load of everything
+        if (!isInitialLoad) {
+            final TextChannel textChannel =
+                    this.jda.getTextChannelsByName(
+                            this.announcementChannel,
+                            true)
+                            .stream()
+                            .findFirst()
+                            .orElseThrow();
+            textChannel.sendMessage(messageBuilder.build()).queue();
+        } else {
+            LOG.info("Loaded {} pools", pools.size());
+        }
     }
 }

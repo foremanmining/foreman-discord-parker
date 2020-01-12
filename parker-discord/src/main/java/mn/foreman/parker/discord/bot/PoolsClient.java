@@ -1,6 +1,7 @@
 package mn.foreman.parker.discord.bot;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -82,9 +83,10 @@ public class PoolsClient {
 
     /** A model object representation of a pool from Foreman. */
     @Data
+    @NoArgsConstructor
     public static class Pool {
 
         /** The stratum. */
-        private final String stratum;
+        private String stratum;
     }
 }
