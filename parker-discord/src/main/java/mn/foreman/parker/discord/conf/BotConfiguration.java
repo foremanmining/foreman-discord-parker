@@ -35,12 +35,10 @@ public class BotConfiguration {
     @Bean
     public JDA jda()
             throws LoginException, InterruptedException {
-        final JDA jda =
-                new JDABuilder(this.token)
-                        .setActivity(Activity.playing(this.playing))
-                        .build();
-        jda.awaitReady();
-        return jda;
+        return JDABuilder.createDefault(this.token)
+                .setActivity(Activity.playing(this.playing))
+                .build()
+                .awaitReady();
     }
 
     /**

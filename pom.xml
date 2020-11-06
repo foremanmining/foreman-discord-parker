@@ -6,12 +6,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.2.RELEASE</version>
+        <version>2.3.4.RELEASE</version>
         <relativePath/>
     </parent>
     <groupId>mn.foreman</groupId>
     <artifactId>discord-parker</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <name>discord-parker</name>
     <description>The Foreman Discord Parker bot</description>
     <packaging>pom</packaging>
@@ -20,6 +20,17 @@
         <name>OBM, LLC</name>
         <url>https://foreman.mn</url>
     </organization>
+
+    <repositories>
+        <repository>
+            <id>jcenter</id>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <name>bintray</name>
+            <url>https://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
 
     <distributionManagement>
         <repository>
@@ -35,10 +46,10 @@
     </distributionManagement>
 
     <properties>
-        <java.version>13</java.version>
+        <java.version>11</java.version>
 
         <commons-io.version>2.6</commons-io.version>
-        <discord-jda.version>4.1.0_96</discord-jda.version>
+        <discord-jda.version>4.2.0_214</discord-jda.version>
         <easymock.version>4.1</easymock.version>
         <jib.version>1.8.0</jib.version>
     </properties>

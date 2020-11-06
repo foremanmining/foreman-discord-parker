@@ -7,11 +7,11 @@
     <parent>
         <groupId>mn.foreman</groupId>
         <artifactId>discord-parker</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
     </parent>
 
     <artifactId>parker-app</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <name>discord-parker: parker-app</name>
 
     <packaging>jar</packaging>
@@ -60,7 +60,7 @@
                 </executions>
                 <configuration>
                     <from>
-                        <image>openjdk:13.0.1-slim</image>
+                        <image>openjdk:11.0.9-slim</image>
                     </from>
                     <to>
                         <image>registry.hub.docker.com/delawr0190/discord-parker</image>
