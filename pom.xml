@@ -48,7 +48,7 @@
     <properties>
         <java.version>11</java.version>
 
-        <commons-io.version>2.6</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <discord-jda.version>4.2.0_214</discord-jda.version>
         <easymock.version>4.1</easymock.version>
         <jib.version>1.8.0</jib.version>
